@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>COWNDOWN</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .time-box {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .box {
+        background: #334155;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90px;
+    }
+
+    .number {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .label {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Countdown</h1>
+
+
+    <div class="time-box">
+        <div class="box">
+            <div id="days" class="number">0</div>
+            <div class="label">Hari</div>
+        </div>
+        <div class="box">
+            <div id="hours" class="number">0</div>
+            <div class="label">Jam</div>
+        </div>
+        <div class="box">
+            <div id="minutes" class="number">0</div>
+            <div class="label">Menit</div>
+        </div>
+        <div class="box">
+            <div id="seconds" class="number">0</div>
+            <div class="label">Detik</div>
+        </div>
+    </div>
+</div>
+
+<script>
+const endDate = new Date("2029-10-20T00:00:00");
+
+function updateCountdown() {
+    const now = new Date();
+    const diff = endDate - now;
+
+    if (diff <= 0) {
+        document.querySelector(".container").innerHTML = "<h1>Waktu Habis</h1>";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
